@@ -55,16 +55,15 @@ const updateDish = asyncHandler(async (req,res) => {
         throw new Error("Dish not found")
     }
 
-    const user = await User.findById(req.user.id)
 
     //check for user
-    if(!user) {
+    if(!req.user) {
         res.status(401)
         throw new Error('User Not Found')
     }
 
     // make sure logged in user matches dish user
-    if(dish.user.toString() !== user.id) {
+    if(dish.user.toString() !== req.user.id) {
         res.status(401)
         throw new Error('User not authorized')
     }
@@ -87,16 +86,15 @@ const deleteDish = asyncHandler(async (req,res) => {
         throw new Error("Dish not found")
     }
 
-    const user = await User.findById(req.user.id)
 
     //check for user
-    if(!user) {
+    if(!req.user) {
         res.status(401)
         throw new Error('User Not Found')
     }
 
     // make sure logged in user matches dish user
-    if(dish.user.toString() !== user.id) {
+    if(dish.user.toString() !== req.user.id) {
         res.status(401)
         throw new Error('User not authorized')
     }
