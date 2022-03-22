@@ -19,6 +19,7 @@ const getDishes = async (req,res) => {
 //@access Private
 
 const createDish = asyncHandler(async (req,res) => {
+    console.log(req.body)
     if (!req.body.name) {
         res.status(400)
         throw new Error('Please add a dish name')
@@ -26,7 +27,6 @@ const createDish = asyncHandler(async (req,res) => {
 
     const dish = await Dish.create({
 
-        id: req.body.id,
         name: req.body.name,
         description: req.body.description,
         ingredients: req.body.ingredients,

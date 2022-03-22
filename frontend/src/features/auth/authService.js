@@ -1,5 +1,7 @@
 // Services are generally used for making the http request, and sending the data back
 // and setting any data in local storage
+
+//axios is a depency that enables this
 import axios from 'axios'
 
 const API_URL = '/api/users/'

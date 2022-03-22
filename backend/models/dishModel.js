@@ -7,13 +7,11 @@ const dishSchema = mongoose.Schema(
             required: true,
             ref: 'User'
         },
-        id: {
-            type: Number,
-        },
         name: {
             type: String,
             required: true,
-            unique: true
+            unique: true,
+            index: true
         },
         description: {
             type: String,

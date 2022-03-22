@@ -1,10 +1,29 @@
-import React from 'react'
+import {useEffect} from 'react'
+import {useNavigate} from 'react-router-dom'
+import {useSelector} from 'react-redux'
+import AddFoodItemForm from '../components/admin/AddFoodItemForm'
+
+
 
 const Dashboard = () => {
+
+  const navigate = useNavigate()
+
+  const {user} = useSelector((state) => state.auth)
+
+  useEffect(() => {
+    if(!user) {
+      navigate('/login')
+    }
+  }, [user,navigate])
   return (
-    <div>
-        <h1>My App</h1>
-    </div>
+    <>
+      <section className="heading">
+        <h1>Welcome {user && user.name}</h1>
+        <p>Please select an option to continue!</p>
+      </section>
+      <AddFoodItemForm />
+    </>
   )
 }
 
