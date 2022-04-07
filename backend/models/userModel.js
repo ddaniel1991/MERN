@@ -17,6 +17,14 @@ const userSchema = mongoose.Schema({
     admin: {
         type: Boolean,
     },
+    dishes: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'Dish'
+    },
+    drinks: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'Drinks'
+    }
 
 },
 {

@@ -24,6 +24,28 @@ const Header = () => {
             </Link>
         </div>
         <ul>
+          <li>
+            <Link to='/'>
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to='/dishes/'>
+              Dishes
+            </Link>
+          </li>
+          <li>
+            <Link to='/drinks/'>
+              Drinks
+            </Link>
+          </li>
+          <li>
+            <Link to='/pairings/'>
+              Pairings
+            </Link>
+          </li>
+        </ul>
+        <ul>
           {user ? (         
           <li>
               <button className='btn' onClick={onLogout}>

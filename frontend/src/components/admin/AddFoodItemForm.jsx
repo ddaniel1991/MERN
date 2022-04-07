@@ -41,6 +41,9 @@ const AddFoodItemForm = () => {
     const onSubmit = (e) => {
             e.preventDefault()
             dispatch(createDish(formValues))
+            setFormValues(defaultValues)
+            setIngredients([])
+            setTags([])
     }
     
 

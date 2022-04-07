@@ -2,6 +2,8 @@ import {useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import AddFoodItemForm from '../components/admin/AddFoodItemForm'
+import FoodTable from '../components/FoodTable'
+import Sections from '../components/Sections'
 
 
 
@@ -22,7 +24,7 @@ const Dashboard = () => {
         <h1>Welcome {user && user.name}</h1>
         <p>Please select an option to continue!</p>
       </section>
-      <AddFoodItemForm />
+      <Sections />
     </>
   )
 }

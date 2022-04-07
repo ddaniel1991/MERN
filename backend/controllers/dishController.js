@@ -4,12 +4,22 @@ const User = require('../models/userModel')
 
 
 const Dish = require('../models/dishModel')
-// @desc Get Dishes
+// @desc Get All Dishes
 //@route  GET /api/dishes
 //@access Private
 
 const getDishes = async (req,res) => {
     const dishes = await Dish.find({user: req.user.id})
+    res.status(200).json(dishes)
+
+}
+
+// @desc Get One Dish
+//@route  GET /api/dishes
+//@access Private
+
+const getDish = async (req,res) => {
+    const dishes = await Dish.findById({_id: req.params.id})
     res.status(200).json(dishes)
 
 }
@@ -48,7 +58,7 @@ const createDish = asyncHandler(async (req,res) => {
 
 const updateDish = asyncHandler(async (req,res) => {
 
-    const dish = await Dish.findById(req.params.id)
+    const dish = await Dish.findById(req.params._id)
 
     if(!dish) {
         res.status(400)
@@ -68,7 +78,7 @@ const updateDish = asyncHandler(async (req,res) => {
         throw new Error('User not authorized')
     }
 
-    const updatedDish = await Dish.findByIdAndUpdate(req.params.id, req.body, {new: true})
+    const updatedDish = await Dish.findByIdAndUpdate(req.params._id, req.body, {new: true})
 
     res.status(200).json(updatedDish);
 
@@ -79,7 +89,7 @@ const updateDish = asyncHandler(async (req,res) => {
 //@access Private
 
 const deleteDish = asyncHandler(async (req,res) => {
-    const dish = await Dish.findById(req.params.id)
+    const dish = await Dish.findById(req.params._id)
 
     if(!dish) {
         res.status(400)
@@ -101,7 +111,7 @@ const deleteDish = asyncHandler(async (req,res) => {
 
 
     await dish.remove()
-    res.status(200).json({id: req.params.id});
+    res.status(200).json({id: req.params._id});
 
 })
 
@@ -109,6 +119,7 @@ const deleteDish = asyncHandler(async (req,res) => {
 
 module.exports = {
     getDishes, 
+    getDish,
     createDish, 
     updateDish, 
     deleteDish

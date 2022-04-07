@@ -6,15 +6,32 @@ import axios from 'axios'
 
 const API_URL = '/api/dishes/'
 
-
+// fetch all dishes
 const getDishes = async (token) =>  {
-    const response = await axios.get(API_URL, {token})
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    const response = await axios.get(API_URL, config)
     return response.data
 
 }
 
+//fetch one dish
+const getDish = async (dishID,token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    const response = await axios.get(API_URL + dishID, config)
+    return response.data
+}
+
 // create new dish
 const createDish = async (dishData, token) =>  {
+    // create authorization header in order to configure post request
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
@@ -43,6 +60,7 @@ const displayDish = () => {
 export const  dishService = {
     createDish, 
     getDishes,
+    getDish,
     updateDish,
     deleteDish,
     displayDish
