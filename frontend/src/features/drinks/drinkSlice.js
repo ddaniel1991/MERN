@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import dishService from './dishService'
+import drinkService from './drinkService'
 
 
 // get user from local storage
@@ -7,22 +7,22 @@ import dishService from './dishService'
 
 // declaring initial state
 const initialState = {
-    dishes: [],
+    drinks: [],
     isError: false,
     isSuccess: false,
     isLoading: false,
     message: ''
 }
 /*
-    Create New Dish
+    Create New Drink
     used in AddFoodItemForm
 */
-export const createDish = createAsyncThunk('dishes/create', async (dishData, thunkAPI) => {
+export const createDrink = createAsyncThunk('drinks/create', async (drinkData, thunkAPI) => {
     try {
         // retrieve token from user
         const token = thunkAPI.getState().auth.user.token
-        //makes call to dishService register function which will handle http request
-        return await dishService.createDish(dishData, token)
+        //makes call to drinkService register function which will handle http request
+        return await drinkService.createDrink(drinkData, token)
     } catch (error) {
         //if an error is returned, search in several places for the error message and return it
         const message = (error.response && error.response.data && error.response.data.message) || 
@@ -34,19 +34,19 @@ export const createDish = createAsyncThunk('dishes/create', async (dishData, thu
 })
 
 
-export const updateDish = createAsyncThunk()
+export const updateDrink = createAsyncThunk()
 
 
 /* 
-    Retrieves all dishes from database
+    Retrieves all drinks from database
     used in FoodTable component
 */
-export const getDishes = createAsyncThunk('dishes/getAll', async (_, thunkAPI) => {
+export const getDrinks = createAsyncThunk('drinks/getAll', async (_, thunkAPI) => {
     try {
         // retrieve token from user
         const token = thunkAPI.getState().auth.user.token
-        //makes call to dishService getDishes function which will handle http request
-        return await dishService.getDishes(token)
+        //makes call to drinkService getDrinks function which will handle http request
+        return await drinkService.getDrinks(token)
     } catch (error) {
         //if an error is returned, search in several places for the error message and return it
         const message = (error.response && error.response.data && error.response.data.message) || 
@@ -57,17 +57,17 @@ export const getDishes = createAsyncThunk('dishes/getAll', async (_, thunkAPI) =
     }
 })
 /* 
-    Retrieves on dish from database
+    Retrieves on drink from database
     not yet used
 
 
 */
-export const getDish = createAsyncThunk('dishes/getOne', async (dishID, thunkAPI) => {
+export const getDrink = createAsyncThunk('drinks/getOne', async (drinkID, thunkAPI) => {
     try {
         // retrieve token from user
         const token = thunkAPI.getState().auth.user.token
-        //makes call to dishService getDishes function which will handle http request
-        return await dishService.getDish(dishID,token)
+        //makes call to drinkService getDrinks function which will handle http request
+        return await drinkService.getDrink(drinkID,token)
     } catch (error) {
         //if an error is returned, search in several places for the error message and return it
         const message = (error.response && error.response.data && error.response.data.message) || 
@@ -78,12 +78,12 @@ export const getDish = createAsyncThunk('dishes/getOne', async (dishID, thunkAPI
     }
 })
 
-export const deleteDish = createAsyncThunk('dishes/delete', async (dishId, thunkAPI) => {
+export const deleteDrink = createAsyncThunk('drinks/delete', async (drinkId, thunkAPI) => {
     try {
         // retrieve token from user
         const token = thunkAPI.getState().auth.user.token
-        //makes call to dishService deleteDish function which will handle http request
-        return await dishService.deleteDish(dishId, token)
+        //makes call to drinkService deleteDrink function which will handle http request
+        return await drinkService.deleteDrink(drinkId, token)
     } catch (error) {
         //if an error is returned, search in several places for the error message and return it
         const message = (error.response && error.response.data && error.response.data.message) || 
@@ -96,8 +96,8 @@ export const deleteDish = createAsyncThunk('dishes/delete', async (dishId, thunk
 
 
 
-export const dishSlice = createSlice({
-    name: 'dish',
+export const drinkSlice = createSlice({
+    name: 'drink',
     initialState,
     reducers: {
         reset: (state) => initialState
@@ -105,61 +105,61 @@ export const dishSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            // create dish
-            .addCase(createDish.pending, (state) => {
+            // create drink
+            .addCase(createDrink.pending, (state) => {
                 state.isLoading = true
             })
-            .addCase(createDish.fulfilled, (state, action) => {
+            .addCase(createDrink.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
-                state.dishes.push(action.payload)
+                state.drinks.push(action.payload)
             })
-            .addCase(createDish.rejected, (state, action) => {
+            .addCase(createDrink.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload
             })
-            //get all dishes
-            .addCase(getDishes.pending, (state) => {
+            //get all drinks
+            .addCase(getDrinks.pending, (state) => {
                 state.isLoading = true
                 state.isSuccess = false
             })
-            .addCase(getDishes.fulfilled, (state, action) => {
+            .addCase(getDrinks.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
-                state.dishes = action.payload
+                state.drinks = action.payload
             })
-            .addCase(getDishes.rejected, (state, action) => {
+            .addCase(getDrinks.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload
             })
-            //get one dish
-            .addCase(getDish.pending, (state) => {
+            //get one drink
+            .addCase(getDrink.pending, (state) => {
                 state.isLoading = true
                 state.isSuccess = false
             })
-            .addCase(getDish.fulfilled, (state, action) => {
+            .addCase(getDrink.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
-                state.dishes = action.payload
+                state.drinks = action.payload
             })
-            .addCase(getDish.rejected, (state, action) => {
+            .addCase(getDrink.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload
             })
-            // delete a dish
-            .addCase(deleteDish.pending, (state) => {
+            // delete a drink
+            .addCase(deleteDrink.pending, (state) => {
                 state.isLoading = true
                 state.isSuccess = false
             })
-            .addCase(deleteDish.fulfilled, (state,action) => {
+            .addCase(deleteDrink.fulfilled, (state,action) => {
                 state.isLoading = false
                 state.isSuccess = true
-                state.dishes = state.dishes.filter((dish) => dish._id !== action.payload.id)
+                state.drinks = state.drinks.filter((drink) => drink._id !== action.payload.id)
             })
-            .addCase(deleteDish.rejected, (state, action) => {
+            .addCase(deleteDrink.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload
@@ -169,5 +169,5 @@ export const dishSlice = createSlice({
 })
 
 
-export const {reset} = dishSlice.actions
-export default dishSlice.reducer
+export const {reset} = drinkSlice.actions
+export default drinkSlice.reducer

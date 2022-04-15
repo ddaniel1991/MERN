@@ -1,36 +1,36 @@
 import React from 'react'
-import FoodTable from '../components/dishes/FoodTable'
+import DrinkTable from '../components/drinks/DrinkTable'
 import QuizMeButton from '../components/QuizMeButton'
 import {useSelector, useDispatch} from 'react-redux'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getDishes } from '../features/dishes/dishSlice'
-import NewDishButton from '../components/admin/NewDishButton'
-import { reset as drinkReset } from '../features/drinks/drinkSlice'
+import { getDrinks } from '../features/drinks/drinkSlice'
+import { reset as dishReset } from '../features/dishes/dishSlice'
+import NewDrinkButton from '../components/admin/NewDrinkButton'
 import Spinner from '../components/Spinner'
 
-const Food = () => {
+const Drink = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const {user} = useSelector((state) => state.auth)
-  const { dishes, isLoading, isError, isSuccess, message } = useSelector((state) => state.dishes)
+  const { drinks, isLoading, isError, isSuccess, message } = useSelector((state) => state.drinks)
 
   useEffect(() => {
-      dispatch(drinkReset())
+      dispatch(dishReset())
       if(isError) {
           console.log(message);
       }
       if(!user) {
           navigate('/login')
       }
-      dispatch(getDishes(user.token))
+      dispatch(getDrinks(user.token))
       // return () => {
       // dispatch(reset())
       // }
 
   }, [user, navigate, isError, message, dispatch])
-  console.log(dishes);
+  console.log(drinks);
 
   if(isLoading) {
     return <Spinner />
@@ -41,13 +41,13 @@ const Food = () => {
         <h2>Menu Items</h2>
         <div className='quiz-me-button' margin='normal'>
           {
-            user.admin ? <NewDishButton /> : <QuizMeButton />
+            user.admin ? <NewDrinkButton /> : <QuizMeButton />
           }
 
         </div>
         <div>
         </div>
-        <FoodTable dishes={dishes} />
+        <DrinkTable drinks={drinks} />
 
            
         
@@ -56,4 +56,4 @@ const Food = () => {
   
 }
 
-export default Food
+export default Drink
