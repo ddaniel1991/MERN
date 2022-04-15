@@ -8,4 +8,5 @@ export const store = configureStore({
     auth: authReducer,
     dishes: dishReducer
   },
+ 
 });

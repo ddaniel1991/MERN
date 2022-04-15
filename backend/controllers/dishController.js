@@ -8,21 +8,21 @@ const Dish = require('../models/dishModel')
 //@route  GET /api/dishes
 //@access Private
 
-const getDishes = async (req,res) => {
+const getDishes = asyncHandler(async (req,res) => {
     const dishes = await Dish.find({user: req.user.id})
     res.status(200).json(dishes)
 
-}
+})
 
 // @desc Get One Dish
 //@route  GET /api/dishes
 //@access Private
 
-const getDish = async (req,res) => {
+const getDish = asyncHandler(async (req,res) => {
     const dishes = await Dish.findById({_id: req.params.id})
     res.status(200).json(dishes)
 
-}
+})
 
 // @desc Create a Dish
 //@route  Post /api/dishes
@@ -89,7 +89,8 @@ const updateDish = asyncHandler(async (req,res) => {
 //@access Private
 
 const deleteDish = asyncHandler(async (req,res) => {
-    const dish = await Dish.findById(req.params._id)
+
+    const dish = await Dish.findById(req.params.id)
 
     if(!dish) {
         res.status(400)
@@ -111,7 +112,7 @@ const deleteDish = asyncHandler(async (req,res) => {
 
 
     await dish.remove()
-    res.status(200).json({id: req.params._id});
+    res.status(200).json({id: req.params.id});
 
 })
 

@@ -5,6 +5,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getDishes, reset } from '../features/dishes/dishSlice'
+import AddNewButton from '../components/admin/AddNewButton'
 import Spinner from '../components/Spinner'
 
 const Food = () => {
@@ -22,9 +23,9 @@ const Food = () => {
           navigate('/login')
       }
       dispatch(getDishes(user.token))
-      return () => {
-      dispatch(reset())
-      }
+      // return () => {
+      // dispatch(reset())
+      // }
 
   }, [user, navigate, isError, message, dispatch])
   console.log(dishes);
@@ -37,7 +38,7 @@ const Food = () => {
       <div>
         <h2>Menu Items</h2>
         <div className='quiz-me-button' margin='normal'>
-          <QuizMeButton />
+          <AddNewButton />
 
         </div>
         <div>

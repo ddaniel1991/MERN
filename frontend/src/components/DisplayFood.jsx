@@ -1,7 +1,8 @@
-import { useLocation } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 import { List, ListItem, Container, Button } from '@mui/material'
 import { Col, Row } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
+import { GiKnifeFork } from 'react-icons/gi'
 
 
 const DisplayFood = () => {
@@ -19,8 +20,11 @@ const DisplayFood = () => {
       <Container>
         <h2 className="mb-3">{dish.name}</h2>
         <hr/>
+        { dish.image ?
         <img className="mb-3" src={process.env.PUBLIC_URL + dish.image} alt={dish.name} height="40%" width="70%" />
-        <hr/>
+        : <GiKnifeFork size={ 150} />
+        }
+        <hr />
         <h4>Description</h4>
         <p>{dish.description}</p>
         <hr/>
@@ -49,8 +53,8 @@ const DisplayFood = () => {
         </Row>
         <hr/>
         <Button variant="contained" color='warning' href="/dishes">Back</Button>
-        <Button variant='contained' color='info' href='/dishes/:id/edit'>Edit</Button>
-        <Button variant="contained" color='error' href='/dishes/:id/delete'>Delete</Button>
+        <Button variant='contained' color='info' href={`/dishes/${dish._id}/edit`}>Edit</Button>
+        <Link to={`/dishes/${dish._id}/confirm-delete`} state={{dish}}><Button variant="contained" color='error'>Delete</Button></Link>
         <hr/>
       </Container>
     </div>

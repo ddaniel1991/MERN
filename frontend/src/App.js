@@ -6,7 +6,9 @@ import Register from './pages/Register'
 import Header from './components/Header'
 import Food from './pages/Food'
 import DisplayFood from './components/DisplayFood'
+import AddFoodItemForm from './components/admin/AddFoodItemForm'
 import './index.css';
+import ConfirmDelete from './components/admin/ConfirmDelete'
 
 
 function App() {
@@ -20,9 +22,10 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/dishes' element={<Food/>} />
-            <Route path='/dishes/add' />
+            <Route path='/dishes/add' element={<AddFoodItemForm />} />
             <Route path='/dishes/:id' element={<DisplayFood />} />
-            <Route path='/dishes/:id/edit' />
+              <Route path='/dishes/:id/edit' />
+              <Route path='/dishes/:id/confirm-delete' element={<ConfirmDelete />} />
 
           </Routes>
 

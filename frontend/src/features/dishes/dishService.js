@@ -34,8 +34,8 @@ const createDish = async (dishData, token) =>  {
     // create authorization header in order to configure post request
     const config = {
         headers: {
-            Authorization: `Bearer ${token}`
-        }
+            Authorization: `Bearer ${token}`,
+        },
     }
 
     const response = await axios.post(API_URL, dishData, config)
@@ -48,7 +48,15 @@ const updateDish = () => {
 
 }
 
-const deleteDish = () => {
+const deleteDish =  async (dishId, token) =>  {
+    
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    const response = await axios.delete(API_URL + dishId, config)
+    return response.data
 
 }
 

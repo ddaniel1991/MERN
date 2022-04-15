@@ -13,7 +13,6 @@ const protect = asyncHandler(async (req,res,next) => {
             //auth header presents token as 'Bearer *token*' 
             //splitting by space and grabbing second value which will isolate token
             token = req.headers.authorization.split(' ')[1]
-
             //Verify Token
             const decoded = jwt.verify(token, process.env.JWT_SECRET)
 
