@@ -2,6 +2,8 @@ import {FaSignInAlt, FaSignOutAlt, FaUser} from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import {useSelector, useDispatch} from 'react-redux'
 import { logout, reset } from '../features/auth/authSlice'
+import { Container } from '@mui/material'
+
 
 const Header = () => {
   const navigate = useNavigate()
@@ -16,6 +18,7 @@ const Header = () => {
 
 
   return (
+    
     <div>
       <header className='header'>
         <div className="logo">
@@ -42,6 +45,11 @@ const Header = () => {
           <li>
             <Link to='/pairings/'>
               Pairings
+            </Link>
+          </li>
+          <li>
+            <Link to='/quiz'>
+              Quiz
             </Link>
           </li>
         </ul>

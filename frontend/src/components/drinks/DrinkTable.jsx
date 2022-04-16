@@ -1,15 +1,12 @@
 import React from 'react'
 import DrinkTableItem from './DrinkTableItem'
 import { Table,TableBody,TableCell,TableContainer,TableHead,TableRow, Paper, Container } from '@mui/material'
-
+import { useSelector } from 'react-redux'
 
 
 
 function DrinkTable(drinks) {
 
-
-
-    console.log({drinks})
 
     return (
         <Container>
@@ -27,7 +24,7 @@ function DrinkTable(drinks) {
                     </TableHead>
                     <TableBody>
                         {drinks.drinks.map((drink) => (
-                          <DrinkTableItem key={drink.name} drink={drink} />
+                          <DrinkTableItem updateQuizItems={drinks} key={drink._id} drink={drink} />
                         ))}
                     </TableBody>
                 </Table>

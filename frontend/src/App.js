@@ -13,6 +13,7 @@ import AddDrinkItemForm from './components/admin/AddDrinktemForm'
 import './index.css';
 import ConfirmDelete from './components/admin/ConfirmDelete'
 import ConfirmDrinkDelete from './components/admin/ConfirmDrinkDelete'
+import FlashCard from './components/flashcard/FlashCard'
 
 
 function App() {
@@ -23,18 +24,23 @@ function App() {
         <div className="container">
           <Routes>
             <Route path='/' element={<Dashboard />} />
+        {/* Auth Routes   */}
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
+        {/* Dish Routes */}
             <Route path='/dishes' element={<Food/>} />
               <Route path='/dishes/add' element={<AddFoodItemForm />} />
               <Route path='/dishes/:id' element={<DisplayFood />} />
               <Route path='/dishes/:id/edit' />
               <Route path='/dishes/:id/confirm-delete' element={<ConfirmDelete />} />
+        {/* Drink Routes */}
             <Route path='/drinks' element={<Drink />} />
               <Route path='/drinks/add' element={<AddDrinkItemForm />} />
               <Route path='/drinks/:id' element={<DisplayDrink />} />
               <Route path='/drinks/:id/edit' />
               <Route path='/drinks/:id/confirm-delete' element={<ConfirmDrinkDelete />} />
+          {/* Quiz Routes */}
+            <Route path='/quiz' element={<FlashCard />} />
           </Routes>
 
         </div>

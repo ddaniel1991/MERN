@@ -7,6 +7,10 @@ import {Link} from 'react-router-dom'
 function FoodTableItem(props) {
   const { dish } = props;
   const [open, setOpen] = useState(false);
+
+  const handleCheckboxChange = () => {
+    props.updateQuizItems.updateQuizItems(dish._id)
+  }
   
   return (
     
@@ -26,7 +30,7 @@ function FoodTableItem(props) {
           </TableCell>
           <TableCell><Link to={`/dishes/${dish._id}`} state={{dish}}>{dish.name}</Link></TableCell>
           <TableCell>{dish.description}</TableCell>
-          <TableCell align='center'><Checkbox /></TableCell>
+          <TableCell align='center'><Checkbox onChange={handleCheckboxChange} value={dish._id}  /></TableCell>
         </TableRow>
         <TableRow>
               <TableCell colSpan={3} style={{ paddingBottom: 0, paddingTop: 0, }} >

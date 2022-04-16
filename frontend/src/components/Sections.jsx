@@ -2,8 +2,9 @@ import React from 'react'
 import food from '../img/dish.jpg'
 import pair from '../img/pair.jpg'
 import cocktail from '../img/cocktail.jpg'
-import { Card, Row, Col, Container } from 'react-bootstrap'
+import { Card, Row, Col, Container,CardGroup } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { Stack } from '@mui/material'
 
 const Sections = () => {
     const cardSize = 300
@@ -11,20 +12,21 @@ const Sections = () => {
 
     <Container >
         <div>
-            <Row>
-                <Col md>
+            <Stack direction={{xs:'column',sm:'row'}} spacing={3}>
+            <>
+                <>
                     <Link to="/dishes">
-                        <Card>
+                        <Card style={{   }}>
                         <Card.Img src={food} height={cardSize} width={cardSize} />
                         <Card.Body>
                             <Card.Title className=''>Dishes</Card.Title>
                         </Card.Body>
                         </Card>
                     </Link>
-                </Col>
-                <Col md>
+                </>
+                <>
                     <Link to="/drinks">
-                        <Card>
+                        <Card style={{   }}>
                         <Card.Img src={cocktail} height={cardSize} width={cardSize} />
                         <Card.Body>
                             <Card.Title>Drinks</Card.Title>
@@ -32,18 +34,19 @@ const Sections = () => {
                         </Card>
                     </Link>
 
-                </Col>
-                <Col md>
+                </>
+                <>
                     <Link to="/pairings">
-                        <Card>
+                        <Card style={{  }}>
                         <Card.Img src={pair} height={cardSize} width={cardSize} />
                         <Card.Body>
                             <Card.Title>Pairings</Card.Title>
                         </Card.Body>
                         </Card>
                     </Link>
-                </Col>
-            </Row>
+                </>
+            </>
+            </Stack>
 
        
         </div>

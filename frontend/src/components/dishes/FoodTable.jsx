@@ -9,7 +9,6 @@ function FoodTable(dishes) {
 
 
 
-    console.log({dishes})
 
     return (
         <Container>
@@ -27,7 +26,7 @@ function FoodTable(dishes) {
                     </TableHead>
                     <TableBody>
                         {dishes.dishes.map((dish) => (
-                          <FoodTableItem key={dish.name} dish={dish} />
+                          <FoodTableItem updateQuizItems={dishes} key={dish._id} dish={dish} />
                         ))}
                     </TableBody>
                 </Table>

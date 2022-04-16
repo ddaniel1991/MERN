@@ -4,10 +4,15 @@ import {FaAngleUp, FaAngleDown} from 'react-icons/fa';
 import {TableRow, TableCell, IconButton,Collapse, Box,Checkbox,Card,CardMedia,List,ListItem } from '@mui/material';
 import {Link} from 'react-router-dom'
 
+
 function DrinkTableItem(props) {
   const { drink } = props;
   const [open, setOpen] = useState(false);
   
+  const handleCheckboxChange = () => {
+    props.updateQuizItems.updateQuizItems(drink._id)
+  }
+    
   return (
     
       <>
@@ -26,7 +31,7 @@ function DrinkTableItem(props) {
           </TableCell>
           <TableCell><Link to={`/drinks/${drink._id}`} state={{drink}}>{drink.name}</Link></TableCell>
           <TableCell>{drink.description}</TableCell>
-          <TableCell align='center'><Checkbox /></TableCell>
+          <TableCell align='center'><Checkbox onChange={handleCheckboxChange} value={drink._id} /></TableCell>
         </TableRow>
         <TableRow>
               <TableCell colSpan={3} style={{ paddingBottom: 0, paddingTop: 0, }} >

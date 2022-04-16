@@ -8,7 +8,7 @@ export const store = configureStore({
   reducer: {
     auth: authReducer,
     dishes: dishReducer,
-    drinks: drinkReducer
+    drinks: drinkReducer,
   },
  
 });

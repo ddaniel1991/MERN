@@ -209,6 +209,11 @@ h3 {
 #ingredient-list {
   justify-content: center;
 }
+
+.card-title {
+  text-align: center;
+  justify-content: center;
+}
 @keyframes spin {
   0% {
     transform: rotate(0deg);

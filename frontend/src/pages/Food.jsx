@@ -1,13 +1,13 @@
 import React from 'react'
 import FoodTable from '../components/dishes/FoodTable'
-import QuizMeButton from '../components/QuizMeButton'
 import {useSelector, useDispatch} from 'react-redux'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getDishes } from '../features/dishes/dishSlice'
-import NewDishButton from '../components/admin/NewDishButton'
 import { reset as drinkReset } from '../features/drinks/drinkSlice'
 import Spinner from '../components/Spinner'
+import {Container, Button } from '@mui/material'
+import { toast } from 'react-toastify'
 
 const Food = () => {
   const navigate = useNavigate()
@@ -15,6 +15,20 @@ const Food = () => {
 
   const {user} = useSelector((state) => state.auth)
   const { dishes, isLoading, isError, isSuccess, message } = useSelector((state) => state.dishes)
+  const quizItems = []
+  const quizItemIds = []
+
+  const updateQuizItems = (itemId) => {
+
+    if(quizItemIds.includes(itemId)) {
+      const index = quizItemIds.indexOf(itemId)
+      quizItemIds.splice(index, 1)
+    }
+    else {
+      quizItemIds.push(itemId)
+    }
+
+  }
 
   useEffect(() => {
       dispatch(drinkReset())
@@ -30,7 +44,23 @@ const Food = () => {
       // }
 
   }, [user, navigate, isError, message, dispatch])
-  console.log(dishes);
+
+  const handleQuizButton = () => {
+    if(quizItemIds.length === 0) {
+      toast.error('Please select an item to start quiz')
+    }
+    else{
+      for(let x = 0; x < quizItemIds.length; x++) {
+         for(let y = 0; y < dishes.length; y++) {
+             if(quizItemIds[x] === dishes[y]._id) {
+                 quizItems.push(dishes[y])
+             }
+         }
+      }
+  
+      navigate('/quiz', {state: quizItems})
+    }
+  }
 
   if(isLoading) {
     return <Spinner />
@@ -40,14 +70,18 @@ const Food = () => {
       <div>
         <h2>Menu Items</h2>
         <div className='quiz-me-button' margin='normal'>
+        <Container className='mb-3' margin='normal' align='right'>
           {
-            user.admin ? <NewDishButton /> : <QuizMeButton />
+            user.admin ? <Button href="/dishes/add" variant='contained' color='success'>New Dish</Button>
+              : null
           }
+          <Button variant='contained' color='secondary' onClick={handleQuizButton}>Quiz Me</Button>
+        </Container>
 
         </div>
         <div>
         </div>
-        <FoodTable dishes={dishes} />
+        <FoodTable updateQuizItems={updateQuizItems} dishes={dishes} />
 
            
         
