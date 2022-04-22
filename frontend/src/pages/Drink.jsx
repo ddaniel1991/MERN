@@ -62,6 +62,8 @@ const Drink = () => {
 
   }, [user, navigate, isError, message, dispatch])
 
+
+
   if(isLoading) {
     return <Spinner />
   }
@@ -72,7 +74,7 @@ const Drink = () => {
         <div className='quiz-me-button' margin='normal'>
         <Container className='mb-3' margin='normal' align='right'>
           {
-            user.admin ? <Button href="/dishes/add" variant='contained' color='success'>New Drink</Button>
+            user.admin ? <Button href="/drinks/add" variant='contained' color='success'>New Drink</Button>
               : null
           }
           <Button variant='contained' color='secondary' onClick={handleQuizButton}>Quiz Me</Button>

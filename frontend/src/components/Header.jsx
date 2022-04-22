@@ -1,9 +1,10 @@
 import {FaSignInAlt, FaSignOutAlt, FaUser} from 'react-icons/fa'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import {useSelector, useDispatch} from 'react-redux'
 import { logout, reset } from '../features/auth/authSlice'
-import { Container } from '@mui/material'
-
+import { Navbar, NavbarBrand, NavLink, Nav, Container} from 'react-bootstrap'
+import { FaBars } from 'react-icons/fa'
+import { MdRestaurant } from 'react-icons/md'
 
 const Header = () => {
   const navigate = useNavigate()
@@ -21,61 +22,61 @@ const Header = () => {
     
     <div>
       <header className='header'>
-        <div className="logo">
-            <Link to='/'>
-                MenuTrainer
-            </Link>
+        <div>
+          <Navbar bg='light' variant='light' expand='lg' fixed='top'>
+            <Container>
+              <Navbar.Toggle  aria-controls="basic-navbar-nav"><FaBars /></Navbar.Toggle> 
+
+              <NavbarBrand href='/'><MdRestaurant /></NavbarBrand>
+              <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className='me-auto'>
+            
+                  <NavLink href='/'> Home </NavLink>
+                  {user ?
+                  <>
+        
+                  <NavLink href='/dishes/'> Dishes </NavLink>
+            
+                  <NavLink href='/drinks/'> Drinks </NavLink>
+            
+                  <NavLink href='/pairings/'> Pairings </NavLink>
+              
+                  <NavLink href='/quiz'> Quiz </NavLink>
+                  </>
+
+                  : null
+                  }
+
+                </Nav>    
+              </Navbar.Collapse>  
+
+              <Nav>
+                  {user ? (         
+                  <>
+                      <button className='btn dflex flex-row-reverse' onClick={onLogout}>
+                          <FaSignOutAlt />Logout
+                      </button>
+                  </> 
+                  ) : (
+                  <> 
+                      <>
+                        <NavLink className='dflex flex-row-reverse' href='/login'>
+                            <FaSignInAlt />Login
+                        </NavLink>
+                      </>   
+                      <>
+                        <NavLink className='dflex flex-row-reverse' href='/register'>
+                            <FaUser />Register
+                        </NavLink>
+                      </>
+                  </>)
+                  }
+                        
+              </Nav>
+            </Container>    
+          </Navbar>
         </div>
-        <ul>
-          <li>
-            <Link to='/'>
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to='/dishes/'>
-              Dishes
-            </Link>
-          </li>
-          <li>
-            <Link to='/drinks/'>
-              Drinks
-            </Link>
-          </li>
-          <li>
-            <Link to='/pairings/'>
-              Pairings
-            </Link>
-          </li>
-          <li>
-            <Link to='/quiz'>
-              Quiz
-            </Link>
-          </li>
-        </ul>
-        <ul>
-          {user ? (         
-          <li>
-              <button className='btn' onClick={onLogout}>
-                  <FaSignOutAlt />Logout
-              </button>
-          </li> 
-          ) : (
-          <> 
-              <li>
-                <Link to='/login'>
-                    <FaSignInAlt />Login
-                </Link>
-              </li>   
-              <li>
-                <Link to='/register'>
-                    <FaUser />Register
-                </Link>
-              </li>
-          </>)
-          }
-                
-            </ul>
+
       </header>
     </div>
   )

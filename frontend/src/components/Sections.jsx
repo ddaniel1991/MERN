@@ -2,7 +2,7 @@ import React from 'react'
 import food from '../img/dish.jpg'
 import pair from '../img/pair.jpg'
 import cocktail from '../img/cocktail.jpg'
-import { Card, Row, Col, Container,CardGroup } from 'react-bootstrap'
+import { Card, Container } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { Stack } from '@mui/material'
 

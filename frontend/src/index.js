@@ -1,5 +1,6 @@
 import React from 'react';
 import {StylesProvider} from "@mui/styles"
+import 'bootstrap/dist/css/bootstrap.min.css';
 import ReactDOM from 'react-dom';
 import 'react-toastify/dist/ReactToastify.css'
 import "@pathofdev/react-tag-input/build/index.css";
@@ -7,7 +8,6 @@ import App from './App';
 import { store } from './app/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
-
 
 ReactDOM.render(
   <React.StrictMode>

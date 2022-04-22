@@ -19,7 +19,6 @@ const protect = asyncHandler(async (req,res,next) => {
             //Get user from the token
             //Returns user object without the password
             req.user = await User.findById(decoded.id).select('-password')
-
             next()
 
 

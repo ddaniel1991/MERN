@@ -14,6 +14,8 @@ import './index.css';
 import ConfirmDelete from './components/admin/ConfirmDelete'
 import ConfirmDrinkDelete from './components/admin/ConfirmDrinkDelete'
 import FlashCard from './components/flashcard/FlashCard'
+import ImageUpload from './components/admin/ImageUpload'
+import env from 'react-dotenv'
 
 
 function App() {
@@ -41,6 +43,7 @@ function App() {
               <Route path='/drinks/:id/confirm-delete' element={<ConfirmDrinkDelete />} />
           {/* Quiz Routes */}
             <Route path='/quiz' element={<FlashCard />} />
+            <Route path='/test' element={<ImageUpload />} />
           </Routes>
 
         </div>

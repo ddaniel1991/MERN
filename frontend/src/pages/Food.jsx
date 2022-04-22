@@ -31,13 +31,14 @@ const Food = () => {
   }
 
   useEffect(() => {
+    if(!user) {
+      navigate('/login')
+  }
       dispatch(drinkReset())
       if(isError) {
           console.log(message);
       }
-      if(!user) {
-          navigate('/login')
-      }
+   
       dispatch(getDishes(user.token))
       // return () => {
       // dispatch(reset())
@@ -62,19 +63,28 @@ const Food = () => {
     }
   }
 
+  // if(!user) {
+  //   navigate('/login')
+  //   return (
+  //     <h3>You must be logged in to do that</h3>
+  //   )
+  // }
+
   if(isLoading) {
     return <Spinner />
   }
+  
     return (
-
       <div>
         <h2>Menu Items</h2>
         <div className='quiz-me-button' margin='normal'>
         <Container className='mb-3' margin='normal' align='right'>
+         
           {
             user.admin ? <Button href="/dishes/add" variant='contained' color='success'>New Dish</Button>
               : null
           }
+        
           <Button variant='contained' color='secondary' onClick={handleQuizButton}>Quiz Me</Button>
         </Container>
 
@@ -87,7 +97,10 @@ const Food = () => {
         
       </div>
     )
+
   
+
+
 }
 
 export default Food

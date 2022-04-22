@@ -35,7 +35,7 @@ const FlashCard = () => {
     }
   if(quizItems === null) {
       return(
-        <h3>Please select the items you wish to study from the Dishes or Drinks tab </h3>
+        <h3>Select the items you wish to study from the Dishes or Drinks tab </h3>
       )
   }  
     
